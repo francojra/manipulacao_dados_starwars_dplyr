@@ -6,6 +6,7 @@
 # Carregar pacotes -------------------------------------------------------------------------------------------------------------------------
 
 library(dplyr)
+library(tibble)
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -46,3 +47,48 @@ starwars %>%
 
 starwars %>%
   select(where(is.numeric))
+
+# filter
+
+starwars %>%
+  filter(hair_color == "brown",
+         sex == "male")
+
+starwars %>%
+  filter(height <= 100,
+         mass >= 20)
+
+starwars %>%
+  filter(eye_color != "blue" &
+         between(birth_year, 20, 100))
+
+starwars %>%
+  select(eye_color, birth_year, name) %>%
+  filter(eye_color != "blue",
+         near(birth_year, 20, 100))
+
+starwars %>%
+  filter(eye_color != "red" &
+         xor(mass < 20, height < 150)) %>%
+  View()
+
+starwars %>%
+  select(eye_color, height, name) %>%
+  filter(eye_color != "red") %>%
+  View()
+
+starwars <- as.tibble(starwars)
+
+starwars %>%
+  select(eye_color, height, name) %>%
+  slice_head(n = 5) %>%
+  View()
+
+starwars %>%
+  select(eye_color, height, name) %>%
+  slice_tail(n = 8) %>%
+  View()
+
+
+
+
