@@ -11,4 +11,6 @@
 * Principais funções do dplyr;
 * Função select;
 * Função filter;
-* Função rename.
+* Função rename;
+* Função mutate;
+* Função arrange.
