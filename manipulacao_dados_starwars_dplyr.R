@@ -25,7 +25,7 @@ View(wars)
 # 5. arrange (desc)
 # 6. summarise
 
-## select
+## Função select
 
 starwars %>%
   select(ends_with("color"))
@@ -48,7 +48,7 @@ starwars %>%
 starwars %>%
   select(where(is.numeric))
 
-# filter
+## Função filter
 
 starwars %>%
   filter(hair_color == "brown",
