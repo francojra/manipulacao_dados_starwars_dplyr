@@ -27,7 +27,7 @@ View(wars)
 # 6. group_by
 # 7. summarise
 
-## Função select
+# Função select ----------------------------------------------------------------------------------------------------------------------------
 
 starwars %>%
   select(ends_with("color"))
@@ -50,7 +50,7 @@ starwars %>%
 starwars %>%
   select(where(is.numeric))
 
-## Função filter
+# Função filter ----------------------------------------------------------------------------------------------------------------------------
 
 starwars %>%
   filter(hair_color == "brown",
@@ -96,7 +96,7 @@ starwars %>%
   slice_max(height, n = 3) %>%
   View()
 
-# Função rename
+# Função rename ----------------------------------------------------------------------------------------------------------------------------
 
 starwars %>%
   select(height, name) %>%
@@ -117,7 +117,7 @@ starwars %>%
   rename_with( ~ gsub("_", ".", .x)) %>%
   View()
 
-# Função mutate
+# Função mutate ----------------------------------------------------------------------------------------------------------------------------
 
 starwars %>%
   select(name, height, mass) %>%
@@ -129,7 +129,7 @@ starwars %>%
   mutate(height_cumulative = cumsum(height)) %>%
   View()
 
-# Criando uma função para aplicar no mutate
+### Criando uma função para aplicar no mutate
 
 multiplica_2 <- function(x) (x*2)
 
@@ -137,6 +137,29 @@ starwars %>%
   select(name, height, mass) %>%
   mutate_if(is.double, multiplica_2) %>%
   View()
+
+# Função arrange ---------------------------------------------------------------------------------------------------------------------------
+
+starwars %>%
+  select(birth_year, height, mass) %>%
+  arrange(height) %>%
+  view()
+
+starwars %>%
+  select(birth_year, height, mass) %>%
+  arrange(mass) %>%
+  view()
+
+starwars %>%
+  select(birth_year, height, mass) %>%
+  arrange(desc(birth_year)) %>%
+  view()
+
+starwars %>%
+  select(birth_year, height, mass) %>%
+  arrange(desc(birth_year), mass, height) %>%
+  view()
+
 
 
 
