@@ -94,6 +94,19 @@ starwars %>%
   slice_max(height, n = 3) %>%
   View()
 
+# Função rename
 
+starwars %>%
+  select(height, name) %>%
+  rename(nomes = name, altura =  height) %>%
+  View()
 
+starwars %>%
+  select(mass, name) %>%
+  rename_with(tolower) %>%
+  View()
 
+starwars %>%
+  select(mass, name) %>%
+  rename_with(toupper) %>%
+  View()
