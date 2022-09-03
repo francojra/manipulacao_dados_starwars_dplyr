@@ -89,6 +89,11 @@ starwars %>%
   slice_tail(n = 8) %>%
   View()
 
+starwars %>%
+  select(height, name) %>%
+  slice_max(height, n = 3) %>%
+  View()
+
 
 
 
