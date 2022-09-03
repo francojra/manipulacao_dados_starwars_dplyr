@@ -2,6 +2,7 @@
 # Manipulação da Base Star Wars com Dplyr --------------------------------------------
 # Autora do script: Jeanne Franco ----------------------------------------------------
 # Data: 02/09/22 ---------------------------------------------------------------------
+# Referência: https://www.youtube.com/watch?v=qKGdU5yAK8s ----------------------------
 
 # Carregar pacotes -------------------------------------------------------------------------------------------------------------------------
 
@@ -21,9 +22,10 @@ View(wars)
 # 1. select (ends_with; starts_with; contains; matches; where)
 # 2. filter (==; =!; |; &; xor(); %in%; >; <; >=; <=; any; all; slice_max; slice_min; between; near)
 # 3. rename
-# 4. group_by
+# 4. mutate
 # 5. arrange (desc)
-# 6. summarise
+# 6. group_by
+# 7. summarise
 
 ## Função select
 
@@ -110,3 +112,32 @@ starwars %>%
   select(mass, name) %>%
   rename_with(toupper) %>%
   View()
+
+starwars %>%
+  rename_with( ~ gsub("_", ".", .x)) %>%
+  View()
+
+# Função mutate
+
+starwars %>%
+  select(name, height, mass) %>%
+  mutate(height = height/100, IMC = mass/(height)^2) %>%
+  View()
+
+starwars %>%
+  select(name, height, mass) %>%
+  mutate(height_cumulative = cumsum(height)) %>%
+  View()
+
+# Criando uma função para aplicar no mutate
+
+multiplica_2 <- function(x) (x*2)
+
+starwars %>%
+  select(name, height, mass) %>%
+  mutate_if(is.double, multiplica_2) %>%
+  View()
+
+
+
+
