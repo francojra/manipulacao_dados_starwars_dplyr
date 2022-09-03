@@ -10,4 +10,5 @@
 3. Manipular dados:
 * Principais funções do dplyr;
 * Função select;
-* Função filter.
+* Função filter;
+* Função rename.
