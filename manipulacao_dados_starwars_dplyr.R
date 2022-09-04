@@ -8,6 +8,7 @@
 
 library(dplyr)
 library(tibble)
+library(tidyr) # Para remover NAs com a função drop_na()
 
 # Carregar dados ---------------------------------------------------------------------------------------------------------------------------
 
@@ -171,17 +172,18 @@ starwars %>%
 
 starwars %>%
   select(height, mass, hair_color, eye_color, homeworld) %>%
+  drop_na() %>%
   group_by(homeworld) %>%
   summarise(media_alt = mean(height),
-            media_mass = mean(mass, na.rm = T)) %>%  # na.rm = na remove
+            media_mass = mean(mass)) %>%  # na.rm = na remove
   view()
 
 starwars %>%
   select(height, mass, hair_color, eye_color, homeworld) %>%
-  na.remove() %>%
-  group_by(hair_color) %>%
-  summarise(sd_alt = sd(height),
-            sd_mass = sd(mass)) %>%  
+  drop_na() %>%
+  group_by(homeworld) %>%
+  summarise(min_alt = min(height),
+            min_mass = min(mass)) %>%  
   view()
 
 
