@@ -17,7 +17,7 @@ View(wars)
 
 # Manipular dados --------------------------------------------------------------------------------------------------------------------------
 
-## Principais funções do dplyr
+### Principais funções do dplyr
 
 # 1. select (ends_with; starts_with; contains; matches; where)
 # 2. filter (==; =!; |; &; xor(); %in%; >; <; >=; <=; any; all; slice_max; slice_min; between; near)
@@ -158,6 +158,30 @@ starwars %>%
 starwars %>%
   select(birth_year, height, mass) %>%
   arrange(desc(birth_year), mass, height) %>%
+  view()
+
+# Função summarise -------------------------------------------------------------------------------------------------------------------------
+
+### Média central: mean(), median()
+### Variação: sd(), IQR(), mad()
+### Amplitude: min(), max(), quantile()
+### Posição: first(), last(), nth()
+### Frequência: n(), n_distinct()
+### Lógicas: any(), all()
+
+starwars %>%
+  select(height, mass, hair_color, eye_color, homeworld) %>%
+  group_by(homeworld) %>%
+  summarise(media_alt = mean(height),
+            media_mass = mean(mass, na.rm = T)) %>%  # na.rm = na remove
+  view()
+
+starwars %>%
+  select(height, mass, hair_color, eye_color, homeworld) %>%
+  na.remove() %>%
+  group_by(hair_color) %>%
+  summarise(sd_alt = sd(height),
+            sd_mass = sd(mass)) %>%  
   view()
 
 
