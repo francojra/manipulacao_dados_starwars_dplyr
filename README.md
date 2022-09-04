@@ -13,4 +13,5 @@
 * Função filter;
 * Função rename;
 * Função mutate;
-* Função arrange.
+* Função arrange;
+* Função summarise.
